@@ -2,7 +2,9 @@ from sys import platform
 from os import makedirs, mkdir, system
 from PIL import Image
 from tkinter import PhotoImage
-musicpath = open('user-music-path.txt', 'r').readline().replace('\\', '/') + '/'
+paths = open('user-music-path.txt', 'r').read().replace('\\', '/').split(', ')
+musicpath = paths[0] + '/'
+expath = paths[1] + '/'
 coverspath = 'gui/imgs-data/covers/'
 def replchars(expression, mode='replace'):
     dictchars = {
@@ -26,25 +28,21 @@ def intbtns(state, btnslist, root):
     for btn in btnslist:
         btn['state'] = state
         if state == 'normal':
-            root.destroy()
-            
+            root.destroy()    
 rmbytes = lambda exp : exp.replace('\x00', '; ').strip()
-
 def mkdirs():
-    makedirs('songs/taggeds', exist_ok=True)
     try:
-        mkdir('songs/untaggeds')
-        mkdir('gui/imgs-data/covers')
+        mkdir(expath + 'taggeds')
+        mkdir(expath + 'untaggeds')
+        mkdir(coverspath)
     except FileExistsError:
         pass
-
 def noNone(npt, var):
     if npt == '' or npt == None:
         npt = var
     if '=' in npt:
         npt = npt.replace('=', var)
     return npt.title()
-
 def clearshell():
     os = platform
     if os == 'win32':

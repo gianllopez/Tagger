@@ -1,4 +1,4 @@
-from .utilities import musicpath, coverspath, replchars, PhotoImage, rmbytes
+from .utilities import musicpath, coverspath, replchars, PhotoImage, rmbytes, expath
 from eyed3 import load, log
 from os import listdir, remove
 from tkinter.messagebox import showinfo, showerror
@@ -33,7 +33,7 @@ def nextsong(varsdict, imgbtn):
         else:
             remove(song)
     except StopIteration:
-        showinfo('Tagger - Información', 'No encuentro más canciones para taggear, revisa si en la ruta que me pasaste aún quedan canciones, si no es así, es porque ya taggeaste todo, puedes ver las canciones taggeadas en songs/taggeds/')
+        showinfo('Tagger - Información', 'No encuentro más canciones para taggear, revisa si en la ruta que me pasaste aún quedan canciones, si no es así, es porque ya taggeaste todo, puedes ver las canciones taggeadas en tu carpeta de exportación/taggeds/')
 def savetags(varsdict):
     title = varsdict['Título'].get()
     artist = varsdict['Artista'].get()
@@ -44,7 +44,7 @@ def savetags(varsdict):
     tags.images.set(3, open(coverspath + album + '.png', 'rb').read(), 'image/png')
     tags.save()
     try:
-        open('songs/taggeds/' + artist + ' - ' + title + '.mp3', 'wb').write(open(song, 'rb').read())
+        open(expath + 'taggeds/' + artist + ' - ' + title + '.mp3', 'wb').write(open(song, 'rb').read())
         remove(song)
         showinfo('Tagger - ¡Canción Taggeada!', '%s de %s ya fue taggeada con exito, la puedes encontrar en la carpeta songs/tagged/.' % (title, artist))
     except ValueError:
