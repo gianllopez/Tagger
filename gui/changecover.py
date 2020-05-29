@@ -1,11 +1,12 @@
-from taglogic import changecoverfunction, showinfo, intbtns
+from taglogic import changecoverfunction, intbtns
+from tkinter.messagebox import showinfo
 from tkinter import *
 from threading import Thread
 def changecover(songalbum, imgbtn2, btnslist):
     caroot = Toplevel()
     intbtns('disabled', btnslist, caroot)
     caroot.title('Tagger - ' + songalbum)
-    caroot.geometry('335x135')
+    caroot.geometry('380x200')
     caroot.resizable(0,0)
     caframe = Frame(caroot, bd=5, relief='raised')
     caframe.pack(fill='both', expand=1)

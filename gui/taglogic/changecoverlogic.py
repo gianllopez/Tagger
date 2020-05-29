@@ -1,6 +1,7 @@
-from .utilities import replchars, PhotoImage, Image, intbtns
+from .utilities import replchars, PhotoImage, intbtns
 from urllib.request import urlopen, Request, URLError, HTTPError
 from tkinter.messagebox import showinfo, showerror
+from PIL import Image
 def changecoverfunction(songalbum, rbtnvar, applybtn, pathvar, imgbtn1, btns, root):         
     albumvar = replchars(songalbum)
     def getpath(func):

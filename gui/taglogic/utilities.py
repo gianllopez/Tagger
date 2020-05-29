@@ -1,6 +1,5 @@
 from sys import platform
 from os import makedirs, mkdir, system
-from PIL import Image
 from tkinter import PhotoImage
 paths = open('user-music-path.txt', 'r').read().replace('\\', '/').split(', ')
 musicpath = paths[0] + '/'
