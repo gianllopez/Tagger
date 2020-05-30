@@ -9,9 +9,8 @@ songs = (song for song in listdir(musicpath))
 def nextsong(varsdict, imgbtn):
     try:
         global tags, song, album
-        song = next(songs)
+        song = musicpath + next(songs)
         if splitext(song)[1] in ['.mp3', '.MP3', '.Mp3']: 
-            song = musicpath + song 
             MP3 = load(song)
             try:
                 tags = MP3.tag
@@ -32,9 +31,10 @@ def nextsong(varsdict, imgbtn):
                 showerror('Tagger - MP3 Corrupto', 'El archivo MP3 (' + song + ') está corrupto y nuestro interprete no puede trabajar con él, este tipo de archivos los pasamos a la carpeta songs/untagged/')
         else:
             remove(song)
+            nextsong(varsdict, imgbtn)
     except StopIteration:
         showinfo('Tagger - Información', 'No encuentro más canciones para taggear, revisa si en la ruta que me pasaste aún quedan canciones, si no es así, es porque ya taggeaste todo, puedes ver las canciones taggeadas en tu carpeta de exportación/taggeds/')
-def savetags(varsdict):
+def savetags(varsdict, imgbtn):
     title = varsdict['Título'].get()
     artist = varsdict['Artista'].get()
     tags.title = title
@@ -49,3 +49,4 @@ def savetags(varsdict):
         showinfo('Tagger - ¡Canción Taggeada!', '%s de %s ya fue taggeada con exito, la puedes encontrar en la carpeta songs/tagged/.' % (title, artist))
     except ValueError:
         showerror('Tagger - Error', 'Uno de los metadatos de esta canción contiene bytes infiltrados, prueba a borrar las casillas de título y artista y volverlas a llenar.')
+    nextsong(varsdict, imgbtn)

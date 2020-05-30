@@ -1,11 +1,6 @@
 try:
-    from gui.taglogic import (musicpath, # utilities                    
-                            rmbytes, # utilities
-                            noNone, # utilities
-                            mkdirs, # utilities
-                            clearshell, # utilities
-                            expath, # utilities                          
-                            )
+    from gui.taglogic import (musicpath, rmbytes, noNone, 
+                              mkdirs, clearshell, expath)
     from os import remove, listdir
     from os.path import splitext
     from eyed3 import load, log

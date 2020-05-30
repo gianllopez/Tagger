@@ -1,1 +1,1 @@
-C:\Users\Gian Lopez\Music\, C:\Users\Gian Lopez\Music\
+<Ruta de la música>, <Ruta de exportación>

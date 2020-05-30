@@ -30,12 +30,11 @@ def intbtns(state, btnslist, root):
             root.destroy()    
 rmbytes = lambda exp : exp.replace('\x00', '; ').strip()
 def mkdirs():
-    try:
-        mkdir(expath + 'taggeds')
-        mkdir(expath + 'untaggeds')
-        mkdir(coverspath)
-    except FileExistsError:
-        pass
+    for x in [coverspath, expath + 'taggeds', expath + 'untaggeds']:
+        try:
+            mkdir(x)
+        except FileExistsError:
+            pass
 def noNone(npt, var):
     if npt == '' or npt == None:
         npt = var

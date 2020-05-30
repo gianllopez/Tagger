@@ -1,4 +1,8 @@
-from gui.taglogic import listdir, remove, replchars, load, musicpath, coverspath, Image, splitext, log, rmbytes, mkdirs, clearshell, expath
+from gui.taglogic import replchars, musicpath, coverspath, rmbytes, mkdirs, clearshell, expath
+from os import listdir, remove
+from eyed3 import load, log
+from os.path import splitext
+from PIL import Image
 mkdirs()
 log.setLevel('ERROR')
 clearshell()
@@ -14,12 +18,12 @@ for mp3 in listdir(musicpath):
             if album + '.png' not in listdir(coverspath):
                 c2c = coverspath + album + '.jpg' 
                 open(c2c, 'wb').write(tags.images[0].image_data)
-                Image.open(c2c).resize((250, 250)).save(c2c.replace('jpg', 'png'), 'png')
+                Image.open(c2c).resize((203, 201)).save(c2c.replace('jpg', 'png'), 'png')
                 remove(c2c)
         except AttributeError:
             open(expath + 'untaggeds/' + mp3, 'wb').write(open(song, 'rb').read())
-            remove(song)
+            print(song)
             print('> Problemas con %s.' % mp3)    
     else:
-        remove(song)
+        print(song)
 print('>>> Ya se extrajeron todos los covers de las canciones taggeables, revisa tu carpeta de exportación/untaggeds/ para ver los .mp3 con errores. Ahora abre gui/main-gui.py si quieres usar una interfaz o main-no-gui si quieres correrlo en consola y ¡A TAGGEAR!')
